@@ -31,7 +31,7 @@ class TestPurchasePage:
             wait.until(EC.url_contains("https://www.lusida.co.kr/index.html"))
 
             time.sleep(10)
-
+            
             purchase_page = PurchasePage(driver)
             
             best50_menu = driver.find_element(By.CLASS_NAME, "hover_menu")

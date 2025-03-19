@@ -39,23 +39,11 @@ class MyPage:
         wait.until(EC.url_contains("lusida.co.kr")) 
         time.sleep(2)
     
-    def open_order_list_page(self):
+    def open_mypage_hide_menu(self, text):
         mypage_btn = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "마이페이지")))
         self.action.move_to_element(mypage_btn).perform()
         time.sleep(2)
         
-        orderlist_btn = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "주문내역")))
-        orderlist_btn.click()
+        hide_menu_btn = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, text)))
+        hide_menu_btn.click()
         time.sleep(2)
-    
-    def open_coupon_list_page(self):
-        pass
-    
-    def open_points_list_page(self):
-        pass
-    
-    def open_wishlist_page(self):
-        pass
-    
-    def open_my_posts_page(self):
-        pass
