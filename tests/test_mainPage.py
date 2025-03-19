@@ -33,7 +33,7 @@ class TestMainPage:
             assert False
 
     #자동로그인
-    #@pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
+    @pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
     def test_login_test(self,driver:WebDriver):
         try:
             main_page = MainPage(driver)
@@ -55,6 +55,10 @@ class TestMainPage:
             time.sleep(2)
             login_btn = driver.find_element(By.CLASS_NAME, "login_btn")
             login_btn.click()
+
+            time.sleep(2)
+            alert = wait.until(EC.alert_is_present())
+            alert.accept()  # 확인 버튼 클릭
 
             time.sleep(7)
             wait.until(EC.url_contains("lusida.co.kr")) #URL 검증
