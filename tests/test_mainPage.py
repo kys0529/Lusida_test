@@ -56,6 +56,10 @@ class TestMainPage:
             login_btn = driver.find_element(By.CLASS_NAME, "login_btn")
             login_btn.click()
 
+            time.sleep(2)
+            alert = wait.until(EC.alert_is_present())
+            alert.accept()  # 확인 버튼 클릭
+
             time.sleep(7)
             wait.until(EC.url_contains("lusida.co.kr")) #URL 검증
             assert "lusida.co.kr" in driver.current_url , "로그인 후 메인 페이지로 돌아오지 않았습니다."
