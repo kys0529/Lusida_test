@@ -33,7 +33,7 @@ class TestMainPage:
             assert False
 
     #자동로그인
-    #@pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
+    @pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
     def test_login_test(self,driver:WebDriver):
         try:
             main_page = MainPage(driver)
