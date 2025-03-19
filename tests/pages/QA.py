@@ -5,14 +5,26 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.mainPage import MainPage
-from selenium.common.exceptions import NoSuchElementException , TimeoutException
 
 class QA:
     def __init__(self, driver):
         self.driver =driver
         self.action = ActionChains(self.driver)
 
-    def QA_assert(self,driver:WebDriver):
+    def QA_search(self,text,inquiry):
+        main_page = MainPage(self.driver)
+        main_page.open()
+        main_page.click_by_LINK_TEXT_DROP_DOWN("고객센터")
+        time.sleep(2)
+        main_page.click_by_LINK_TEXT_DROP_DOWN(inquiry)
+        search = self.driver.find_element(By.XPATH, '//input[@name="stext"]')
+        search.send_keys(text)
+        time.sleep(2)
+        search_button = self.driver.find_element(By.XPATH, '//img[@alt="검색"]')
+        search_button.click()
+        self.driver.back()
+    
+    def QA_assert(self,driver:WebDriver,inquiry):
         main_page = MainPage(driver)
         main_page.open()
 
@@ -22,36 +34,12 @@ class QA:
 
         main_page.click_by_LINK_TEXT_DROP_DOWN("고객센터")
         time.sleep(2)
-        main_page.click_by_LINK_TEXT_DROP_DOWN("FAQ")
+        main_page.click_by_LINK_TEXT_DROP_DOWN(inquiry)
         
-        faq_search = driver.find_element(By.XPATH, '//input[@name="stext"]')
-        faq_search.send_keys("입금")
-        time.sleep(2)
-        faq_search_button = driver.find_element(By.XPATH, '//img[@alt="검색"]')
-        faq_search_button.click()
-        driver.back()
         #검증 로직
         #main_page.assert_is_displayed(faq_link,"FAQ")
 
         wait.until(EC.url_contains("https://www.lusida.co.kr/board")) #URL 검증
         assert "https://www.lusida.co.kr/board" in driver.current_url #검증
         driver.back()
-            
-        main_page.click_by_LINK_TEXT_DROP_DOWN("고객센터")
-        time.sleep(2)
-        main_page.click_by_LINK_TEXT_DROP_DOWN("상품문의")
-
-        wait.until(EC.url_contains("https://www.lusida.co.kr/board")) #URL 검증
-        assert "https://www.lusida.co.kr/board" in driver.current_url #검증
-        driver.back()
-
-        main_page.click_by_LINK_TEXT_DROP_DOWN("고객센터")
-        time.sleep(2)
-        main_page.click_by_LINK_TEXT_DROP_DOWN("배송문의")
-
-        wait.until(EC.url_contains("https://www.lusida.co.kr/board")) #URL 검증
-        assert "https://www.lusida.co.kr/board" in driver.current_url #검증
-        driver.back()
-
-        time.sleep(2)
         
