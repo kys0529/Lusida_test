@@ -12,12 +12,6 @@ from selenium.common.exceptions import NoSuchElementException , TimeoutException
 from urllib.parse import quote
 
 class TestSearchPage:    
-    def setup(self):
-        self.driver = webdriver.Chrome()
-    
-    def teardown(self):
-        self.driver.quit()
-
     #상품 검색
     def test_search_items(self, driver: WebDriver):
         try:
