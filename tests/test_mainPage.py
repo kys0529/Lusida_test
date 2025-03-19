@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.mainPage import MainPage
 from pages.loginPage import LoginPage
-from pages.qa import QA
+from pages.QA import QA
 from selenium.common.exceptions import NoSuchElementException , TimeoutException
 
 class TestMainPage:
