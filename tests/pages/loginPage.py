@@ -19,3 +19,7 @@ class LoginPage:
     input_email.send_keys("lusidatest")
     input_password = self.driver.find_element(By.XPATH, "//input[@type='password']")
     input_password.send_keys("123123123^^")
+
+  def click_login_button(self):
+    login_btn = driver.find_element(By.CLASS_NAME, "login_btn")
+    login_btn.click()

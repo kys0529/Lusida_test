@@ -36,12 +36,14 @@ class MainPage:
         
         # 4) 한 번에 실행
         actions.perform()
-
+    
+    #click 드롭박스 함수 마우스를 드롭다운 한 곳에 가져가서 누르기
     def click_by_LINK_TEXT_DROP_DOWN(self, link_text: str):
         click_button = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, link_text)))
         actions = ActionChains(self.driver)
         actions.move_to_element(click_button).click().perform()
 
+    #click 링크텍스트 함수 
     def click_by_LINK_TEXT(self, link_text: str):
         click_button = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, link_text)))
         click_button.click()

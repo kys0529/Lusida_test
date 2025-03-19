@@ -33,57 +33,7 @@ class TestMainPage:
         except NoSuchElementException as e:
             assert False
 
-    #@pytest.mark.skip(reason="확인 테스트")
+    @pytest.mark.skip(reason=" 고객센터 확인 테스트")
     def test_QA(self,driver):
         Qa = QA(driver)
         Qa.QA_assert(driver)
-    
-    #자동로그인
-    @pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
-    def test_login_test(self,driver:WebDriver):
-        try:
-            main_page = MainPage(driver)
-            login_page = LoginPage(driver)
-            main_page.open()
-        
-            wait = ws(driver, 10) #최대 10초까지 기다림
-            wait.until(EC.url_contains("lusida.co.kr")) #URL 검증
-            assert "lusida.co.kr" in driver.current_url #검증
-
-            time.sleep(2)
-
-            login_link = wait.until(EC.presence_of_element_located((By.XPATH, '//a[@href="/shop/member.html?type=login"]')))
-            login_link.click()
-            time.sleep(2)
-            
-            login_page.input_password_and_email()
-
-            time.sleep(2)
-            login_btn = driver.find_element(By.CLASS_NAME, "login_btn")
-            login_btn.click()
-
-            time.sleep(2)
-            alert = wait.until(EC.alert_is_present())
-            alert.accept()  # 확인 버튼 클릭
-
-            time.sleep(7)
-            wait.until(EC.url_contains("lusida.co.kr")) #URL 검증
-            assert "lusida.co.kr" in driver.current_url , "로그인 후 메인 페이지로 돌아오지 않았습니다."
-            
-            driver.save_screenshot("로그인 성공.jpg")
-
-        except NoSuchElementException as e:
-            driver.save_screenshot('로그인-실패-요소없음.jpg')  # 요소를 찾을 수 없을 때
-            assert False, f"로그인 실패: 필수 요소를 찾을 수 없습니다. {e}"
-
-        except TimeoutException as e:
-            driver.save_screenshot('로그인-실패-시간초과.jpg')  # 시간 초과 발생
-            assert False, f"로그인 실패: 페이지 로드가 시간이 초과되었습니다. {e}"
-
-        except AssertionError as e:
-            driver.save_screenshot('로그인-실패-검증오류.jpg')  # 검증 오류 발생
-            assert False, f"로그인 실패: {e}"
-
-        except Exception as e:
-            driver.save_screenshot('로그인-실패-기타오류.jpg')  # 기타 예외 상황
-            assert False, f"로그인 실패: 알 수 없는 오류 발생 - {e}"
