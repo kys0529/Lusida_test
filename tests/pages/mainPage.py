@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait as ws
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys #key입력 임포트
@@ -33,13 +33,26 @@ class MainPage:
         
         # 4) 한 번에 실행
         actions.perform()
-    def click_by_LINK_TEXT(self, link_text: str):
-        login_button = self.driver.find_element(By.LINK_TEXT, link_text)
-        login_button.click()
 
+    def click_by_LINK_TEXT_DROP_DOWN(self, link_text: str):
+        click_button = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, link_text)))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(click_button).click().perform()
+
+    def click_by_LINK_TEXT(self, link_text: str):
+        click_button = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, link_text)))
+        click_button.click()
+    
     def search_text_enter(self):
         search_input_box = self.driver.find_element(By.ID, self.SEARCH_INPUT_ID)
         actions = ActionChains(self.driver)
         actions.move_to_element(search_input_box).click().pause(0.1)
         actions.send_keys(Keys.ENTER)
         actions.perform()
+
+    def assert_is_displayed(element, name):
+        is_displayed = element.is_displayed()
+        if not is_displayed: 
+            assert is_displayed, f"{name} 항목 표시X."
+        
+    
