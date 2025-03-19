@@ -1,6 +1,5 @@
 import time
 import pytest
-from pages.qa import QA
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as ws
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,6 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.mainPage import MainPage
 from pages.loginPage import LoginPage
+from pages.qa import QA
 from selenium.common.exceptions import NoSuchElementException , TimeoutException
 
 class TestMainPage:
