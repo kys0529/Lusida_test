@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as ws
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 
 from pages.mainPage import MainPage
 from pages.loginPage import LoginPage
@@ -9,6 +10,7 @@ from pages.loginPage import LoginPage
 class MyPage:
     def __init__(self, driver):
         self.driver = driver
+        self.action = ActionChains(self.driver)
         
     def auto_login(self, driver):
         main_page = MainPage(driver)
@@ -38,7 +40,13 @@ class MyPage:
         time.sleep(2)
     
     def open_order_list_page(self):
-        pass
+        mypage_btn = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "마이페이지")))
+        self.action.move_to_element(mypage_btn).perform()
+        time.sleep(2)
+        
+        orderlist_btn = ws(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "주문내역")))
+        orderlist_btn.click()
+        time.sleep(2)
     
     def open_coupon_list_page(self):
         pass
