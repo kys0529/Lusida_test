@@ -1,5 +1,6 @@
 import time
 import pytest
+from pages.qa import QA
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as ws
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,6 +33,11 @@ class TestMainPage:
         except NoSuchElementException as e:
             assert False
 
+    #@pytest.mark.skip(reason="확인 테스트")
+    def test_QA(self,driver):
+        Qa = QA(driver)
+        Qa.QA_assert(driver)
+    
     #자동로그인
     @pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
     def test_login_test(self,driver:WebDriver):
