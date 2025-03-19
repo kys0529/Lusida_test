@@ -43,4 +43,14 @@ class TestPurchasePage:
             best50_menu.click()
 
             time.sleep(5)
-            assert "shopbrand.html?xcode=011" in driver.current_url, "be"
+            assert "shopbrand.html?xcode=011" in driver.current_url, "BEST50의 페이지로 이동하지 않았습니다!"
+            
+            driver.save_screenshot("BEST50-이동-성공.jpt")
+
+        except NoSuchElementException as e:
+            driver.save_screenshot('BEST50이동-실패-요소없음.jpg')
+            assert False, f"페이지 로드 실패: 페이지를 찾을 수 없습니다."
+
+        except TimeoutException as e:
+            driver.save_screenshot('BEST50이동-실패-시간초과.jpg')
+            assert False, f"페이지 로드 실패: 페이지 로드 시간이 초과했습니다."
