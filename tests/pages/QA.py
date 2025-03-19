@@ -23,7 +23,13 @@ class QA:
         main_page.click_by_LINK_TEXT_DROP_DOWN("고객센터")
         time.sleep(2)
         main_page.click_by_LINK_TEXT_DROP_DOWN("FAQ")
-            
+        
+        faq_search = driver.find_element(By.XPATH, '//input[@name="stext"]')
+        faq_search.send_keys("입금")
+        time.sleep(2)
+        faq_search_button = driver.find_element(By.XPATH, '//img[@alt="검색"]')
+        faq_search_button.click()
+        driver.back()
         #검증 로직
         #main_page.assert_is_displayed(faq_link,"FAQ")
 
