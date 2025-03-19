@@ -32,8 +32,3 @@ class TestMainPage:
 
         except NoSuchElementException as e:
             assert False
-
-    @pytest.mark.skip(reason=" 고객센터 확인 테스트")
-    def test_QA(self,driver):
-        Qa = QA(driver)
-        Qa.QA_assert(driver)

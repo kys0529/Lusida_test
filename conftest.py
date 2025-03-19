@@ -8,7 +8,11 @@ def driver():
     # 크롬 옵션 설정
 
     chrome_options = Options() #쿠팡이 자동화 크롤링 많은 옵션수정이 필요하다.. 
+    prefs = {"credentials_enable_service": False,"profile.password_manager_enabled": False}
+    chrome_options.add_experimental_option("prefs", prefs)
 
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_argument("--disable-save-password-bubble")
     # 2) SSL 인증서 에러 무시
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("--ignore-ssl-errors")
