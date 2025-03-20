@@ -12,11 +12,14 @@ class TestMyPage:
         except Exception as e:
             print(f"[❗] {e}")
     
-    @pytest.mark.skip(reason="미완성")      
-    def test_open_shop_detail_page(self, driver):
+    #@pytest.mark.skip(reason="미완성")   
+    @pytest.mark.parametrize("url", [
+        "https://www.lusida.co.kr/shop/shopdetail.html?branduid=53337&search=&xcode=054&mcode=002&scode=&special=1&GfDT=bm90W15A",
+    ])   
+    def test_add_product_in_wishlist(self, driver, url):
         try:
             my_page = MyPage(driver)
             my_page.auto_login(driver)
-            my_page.open_shop_detail_page()
+            my_page.add_product_in_wishlist(url)
         except Exception as e:
             print(f"[❗] {e}")
