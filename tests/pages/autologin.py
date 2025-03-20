@@ -34,9 +34,11 @@ class auto:
             alert.accept()
             time.sleep(2)
         
-            wait.until(EC.url_contains("lusida.co.kr")) 
-            time.sleep(2)
-            
+            # 로그인 후 URL 검증
+            wait = ws(driver, 10)  # 최대 10초 대기
+            wait.until(EC.url_contains("lusida.co.kr"))
+            assert "lusida.co.kr" in driver.current_url
+
         except Exception as e:
             print(f"[오류] 예상치 못한 에러 발생: {e}")
             assert False, "테스트 실패 - 알 수 없는 예외 발생"

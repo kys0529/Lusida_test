@@ -21,14 +21,10 @@ def close_alert_if_present(driver):
 class TestPurchasePage:
 
     def test_purchase(self, driver: WebDriver):
-        main_page = MainPage(driver)
         auto_login = auto(driver)
         auto_login.auto_login(driver)
-
-        # 로그인 페이지(accounts)로 이동했는지 확인
+        
         wait = ws(driver, 10) #최대 10초까지 기다림
-        wait.until(EC.url_contains("lusida.co.kr")) #URL 검증
-        assert "lusida.co.kr" in driver.current_url #검증
 
         purchase_page = PurchasePage(driver)
         time.sleep(2)
@@ -41,24 +37,3 @@ class TestPurchasePage:
         driver.back()
 
         time.sleep(2)
-
-        #purchase_page.go_best50()
-
-        #actions = ActionChains(driver)
-        #actions.move_to_element(best50_menu).perform()
-
-        #time.sleep(2)
-        #best50_tab = driver.find_element(By.XPATH, "//a[contains(text(), 'BEST50')]")
-        #best50_tab.click()
-
-        #     time.sleep(5)
-        #     assert "shop/shopbrand.html?xcode=011" in driver.current_url, "BEST50의 페이지로 이동하지 않았습니다!"
-            
-        #     driver.save_screenshot("BEST50-이동-성공.jpg")
-
-        # except NoSuchElementException as e:
-        #     driver.save_screenshot('BEST50이동-실패-요소없음.jpg')
-        #     assert False, f"페이지 로드 실패: 페이지를 찾을 수 없습니다."
-        # except TimeoutException as e:
-        #     driver.save_screenshot('BEST50이동-실패-시간초과.jpg')
-        #     assert False, f"페이지 로드 실패: 페이지 로드 시간이 초과했습니다."
