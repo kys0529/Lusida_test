@@ -9,14 +9,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from pages.mainPage import MainPage
 from pages.loginPage import LoginPage
 from pages.QA import QA
+from pages.autologin import auto
 from selenium.common.exceptions import NoSuchElementException , TimeoutException
 
 class TestMainPage:
-    def setup(self):
-        self.driver = webdriver.Chrome()
-    
-    def teardown(self):
-        self.driver.quit()
 
     @pytest.mark.skip(reason="아직 테스트 케이스 발동 안함")
     def test_open_main_page(self, driver: WebDriver):
